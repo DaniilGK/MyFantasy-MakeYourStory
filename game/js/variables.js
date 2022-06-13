@@ -1,0 +1,1 @@
+export let gameScene = new Phaser.Scene("Game");
