@@ -1,6 +1,4 @@
-let timedEvent;
-let lexi = {};
-let paul = {};
+import {paul, lexi, timedEvent} from "./variables.js";
 let textP;
 let textL;
 
@@ -20,13 +18,12 @@ export function introCreate(sceneThis) {
     let shadow = sceneThis.add.image(0, 0, "shadow");
     shadow.setOrigin(0, 0);
 
-    paul = sceneThis.add.image(0, 0, "paul");
-    paul.setOrigin(0, 0);
+    paul.stable = sceneThis.add.image(0, 0, "paul");
+    paul.stable.setOrigin(0, 0);
     textP = sceneThis.add.image(300, 480, "textP");
-    textP.setScale(1);
 
-    lexi = sceneThis.add.image(-500, 0, "lexi-0");
-    lexi.setOrigin(0, 0);
+    lexi.lexi0 = sceneThis.add.image(-500, 0, "lexi-0");
+    lexi.lexi0.setOrigin(0, 0);
 };
 
 export function introUpdate(sceneThis) {
@@ -35,19 +32,16 @@ export function introUpdate(sceneThis) {
 };
 
 function moveToTheRight(sceneThis) {
-    timedEvent = sceneThis.time.delayedCall(800, function() {
-        paul.x += 50;
-        lexi.x += 50;
+    timedEvent.intro = sceneThis.time.delayedCall(800, function() {
+        paul.stable.x += 50;
+        lexi.lexi0.x += 50;
         
-        if(paul.x > 570) paul.x = 570; 
-        if(lexi.x > 60) lexi.x = 60; 
+        if(paul.stable.x > 570) paul.stable.x = 570; 
+        if(lexi.lexi0.x > 60) lexi.lexi0.x = 60; 
     });
 };
 
 function text(sceneThis) {
-    if(paul.x > 0) textP.destroy();
-    if(lexi.x == 60) {
-        textL = sceneThis.add.image(300, 480, "textL");
-        textL.setScale(.9);
-    };
+    if(paul.stable.x > 0) textP.destroy();
+    if(lexi.lexi0.x == 60) textL = sceneThis.add.image(300, 480, "textL");
 }
