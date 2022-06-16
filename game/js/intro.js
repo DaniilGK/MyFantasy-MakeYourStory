@@ -26,20 +26,20 @@ let intro = new Phaser.Class({
                     callback: () => {
                         this.scene.start("tutorial");
                     }
-                });
+        });
     },
     update: function() {
         moveCharacter(this);
     },
 });
 
-function moveCharacter(introThis) {
-    introThis.time.delayedCall(750, function() {
-        introThis.paul.x += 50;
-        introThis.paulTextIntro.destroy();
+function moveCharacter(sceneThis) {
+    sceneThis.time.delayedCall(750, function() {
+        sceneThis.paul.x += 50;
+        sceneThis.paulTextIntro.destroy();
 
-        introThis.lexi0.x += 50;
-        if(introThis.lexi0.x > 65) introThis.lexi0.x = 65;
-        if(introThis.lexi0.x == 65) introThis.lexiText.x = 65;
+        sceneThis.lexi0.x += 50;
+        if(sceneThis.lexi0.x > 65) sceneThis.lexi0.x = 65;
+        if(sceneThis.lexi0.x == 65) sceneThis.lexiText.x = 65;
     });
 };
