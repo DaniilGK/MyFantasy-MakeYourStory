@@ -3,13 +3,12 @@ let intro = new Phaser.Class({
     Initialize: function() {
         Phaser.Scene.call(this, {"key": "intro"});
     },
-    init: function() {},
     preload: function() {
-        this.load.image("room", "assets/png/room.png");
-        this.load.image("shadow", "assets/png/shadow.png");
+        this.load.image("room", "assets/png/bg/room.png");
+        this.load.image("shadow", "assets/png/bg/shadow.png");
         this.load.image("paul", "assets/png/paul.png");
         this.load.image("paulIntroTxt", "assets/png/paulText-0.png");
-        this.load.image("lexi0", "assets/png/lexi-0.png");
+        this.load.image("lexi0", "assets/png/lexi/lexi-0.png");
         this.load.image("lexiTxt", "assets/png/lexiText.png");
     },
     create: function() {
@@ -22,7 +21,6 @@ let intro = new Phaser.Class({
 
         this.time.addEvent({
                     delay: 1500,
-                    loop: false,
                     callback: () => {
                         this.scene.start("tutorial");
                     }
