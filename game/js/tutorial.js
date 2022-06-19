@@ -1,5 +1,6 @@
-let t = 2;
-
+let alphaShadow = 2;
+let alphaChoose = 2;
+let alphaStuff = 0;
 let tutorial = new Phaser.Class({
     Extends: Phaser.Scene,
     initialize: function() {
@@ -7,7 +8,7 @@ let tutorial = new Phaser.Class({
     },
     preload: function() {
         this.load.image("lexi1", "assets/png/lexi/lexi-1.png");
-        this.load.image("chooseYou", "assets/png/choose/dress.png");
+        this.load.image("choose-dress", "assets/png/choose/dress.png");
         this.load.image("dress", "assets/png/stuff/dress.png");
         this.load.image("blouse", "assets/png/stuff/blouse.png");
         this.load.image("hand", "assets/png/hand.png");
@@ -20,7 +21,7 @@ let tutorial = new Phaser.Class({
             loop: false,
             callback: () => {
                 this.lexi1 = this.add.image(120, 35, "lexi1").setOrigin(0, 0);
-                this.choose = this.add.image(60, 10, "chooseYou").setOrigin(0, 0);
+                this.choose = this.add.image(60, 10, "choose-dress").setOrigin(0, 0);
                 this.dress = this.add.image(40, 560, "dress").setOrigin(0, 0);
                 this.blouse = this.add.image(310, 560, "blouse").setOrigin(0, 0);
                 this.hand = this.add.image(570, 860, "hand").setOrigin(0, 0);
@@ -34,10 +35,17 @@ let tutorial = new Phaser.Class({
         })
     },
     update: function() {
-        this.shadow.setAlpha(t);
-        t -= 0.1;
+        this.shadow.setAlpha(alphaShadow);
+        alphaShadow -= 0.1;
         moveHand(this, 500);
-
+        if(this.dress || this.bloose) {
+            this.dress.setAlpha(alphaStuff);
+            this.blouse.setAlpha(alphaStuff);
+            console.log(alphaStuff)
+                if(alphaStuff < 2) {
+                    alphaStuff += 0.1;
+                };
+        }
     }
 });
 
@@ -57,6 +65,8 @@ function moveHand(a, b) {
                             delay: b,
                             callback: () => {
                                 a.hand.x += 10;
+                                a.choose.setAlpha(alphaChoose);
+                                alphaChoose -= 0.1;
                             },
                         })
                     }
