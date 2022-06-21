@@ -41,7 +41,6 @@ let tutorial = new Phaser.Class({
         if(this.dress || this.bloose) {
             this.dress.setAlpha(alphaStuff);
             this.blouse.setAlpha(alphaStuff);
-            console.log(alphaStuff)
                 if(alphaStuff < 2) {
                     alphaStuff += 0.1;
                 };
