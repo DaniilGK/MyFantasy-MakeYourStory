@@ -10,8 +10,20 @@ let intro = new Phaser.Class({
         this.load.image("paulIntroTxt", "assets/png/paulText-0.png");
         this.load.image("lexi0", "assets/png/lexi/lexi-0.png");
         this.load.image("lexiTxt", "assets/png/lexiText.png");
+        this.load.audio("shared-music", "assets/shared-music.mp3");
     },
     create: function() {
+        this.music = this.sound.add("shared-music");
+        let musicConfig = {
+            mute: false,
+            volume: 1,
+            rate: 1,
+            detune: 0,
+            seek: 0,
+            loop: true,
+            delay: 0,
+        };
+        this.music.play(musicConfig);
         this.room = this.add.image(0, 0, "room").setOrigin(0, 0);
         this.shadow = this.add.image(0, 0, "shadow").setOrigin(0, 0);
         this.paul = this.add.image(0, 0, "paul").setOrigin(0, 0);
