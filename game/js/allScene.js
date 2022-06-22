@@ -8,7 +8,7 @@ let Paul;
 let playNow;
 let paulText;
 let creatThis;
-let alpha = 0;
+let alpha = 2;
 
 let allScene = new Phaser.Class({
     Extends: Phaser.Scene,
@@ -16,11 +16,9 @@ let allScene = new Phaser.Class({
         Phaser.Scene.call(this, { "key": "allScene" });
     },
     preload: function() {
-        allGameObj(this);
     },
     create: function() {
         creatThis = this;
-        // if(scaleObj)
         if(stuff0 !== "Hawaii") {
             startGame();
         } else {
@@ -31,53 +29,6 @@ let allScene = new Phaser.Class({
         animationAlpha();
     }, 
 });
-
-
-function allGameObj(sceneThis) {
-    //bg
-    sceneThis.load.image("room", "assets/png/bg/room.png");
-    sceneThis.load.image("hawaii", "assets/png/bg/hawaii.png");
-    sceneThis.load.image("sea", "assets/png/bg/sea.png");
-    //scale
-    sceneThis.load.image("exp0", "assets/png/choose/experience-0.png");
-    sceneThis.load.image("exp1", "assets/png/choose/experience-1.png");
-    sceneThis.load.image("exp2", "assets/png/choose/experience-2.png");
-    sceneThis.load.image("exp3", "assets/png/choose/experience-3.png");
-    sceneThis.load.image("nameplateBag", "assets/png/choose/bag.png");
-    sceneThis.load.image("nameplateDress", "assets/png/choose/dress.png");
-    sceneThis.load.image("nameplateAccessory", "assets/png/choose/accessory.png");
-    //stuff
-    sceneThis.load.image("Blouse", "assets/png/stuff/blouse.png");
-    sceneThis.load.image("BlueBag", "assets/png/stuff/blueBag.png");
-    sceneThis.load.image("BrownBag", "assets/png/stuff/brownBag.png");
-    sceneThis.load.image("Choker", "assets/png/stuff/choker.png");
-    sceneThis.load.image("Dress", "assets/png/stuff/dress.png");
-    sceneThis.load.image("Glasses", "assets/png/stuff/glasses.png");
-    sceneThis.load.image("Necklace", "assets/png/stuff/necklace.png");
-    sceneThis.load.image("Hawaii", "assets/png/stuff/hawaii.png");
-    sceneThis.load.image("Sea", "assets/png/stuff/sea.png");
-    //lexi
-    sceneThis.load.image("0", "assets/png/lexi/lexi-1.png");
-    sceneThis.load.image("Ldress", "assets/png/lexi/D.png");
-    sceneThis.load.image("Ldressbluebag", "assets/png/lexi/D-BL-B.png");
-    sceneThis.load.image("Ldressbluebagglasses", "assets/png/lexi/D-BL-B-G.png");
-    sceneThis.load.image("Ldressbluebagchoker", "assets/png/lexi/D-BL-B-CH.png");
-    sceneThis.load.image("Ldressbrownbag", "assets/png/lexi/D-B-B.png");
-    sceneThis.load.image("Ldressbrownbagglasses", "assets/png/lexi/D-B-B-G.png");
-    sceneThis.load.image("Ldressbrownbagchoker", "assets/png/lexi/D-B-B-CH.png");
-    sceneThis.load.image("Lblouse", "assets/png/lexi/B.png");
-    sceneThis.load.image("Lblousebluebag", "assets/png/lexi/B-BL-B.png");
-    sceneThis.load.image("Lblousebluebagnecklace", "assets/png/lexi/B-BL-B-N.png");
-    sceneThis.load.image("Lblousebluebagglasses", "assets/png/lexi/B-BL-B-G.png");
-    sceneThis.load.image("Lblousebrownbag", "assets/png/lexi/B-B-B.png");
-    sceneThis.load.image("Lblousebrownbagnecklace", "assets/png/lexi/B-B-B-N.png");
-    sceneThis.load.image("Lblousebrownbagglasses", "assets/png/lexi/B-B-B-G.png");
-    //paul
-    sceneThis.load.image("paulEnd", "assets/png/paulEnd.png");
-    sceneThis.load.image("paulText", "assets/png/paulText-1.png");
-    //
-    sceneThis.load.image("playNow", "assets/png/playNow.png")
-};
 
 function interior(sceneThis, bg, scale) {
     sceneThis.add.image(0, 0, `${bg}`).setOrigin(0, 0);
@@ -131,7 +82,6 @@ function startGame() {
     stuff.forEach(e => {
         e.setOrigin(0, 0).setInteractive();
         e.on("pointerdown", function() {
-            hint();
             alpha = 0;
             changingLexiСlothes(creatThis, this);
             creatThis.create();
@@ -144,7 +94,6 @@ function endGame() {
     stuff.forEach(e => {
         e.setOrigin(0, 0).setInteractive();
         e.on("pointerdown", function() {
-            hint();
             alpha = 0;
             bg = this.texture.key.toLowerCase();
             stuff.forEach(e => e.destroy());
@@ -168,14 +117,14 @@ function endGame() {
     })
 };
 
-function hint() {
-    creatThis.time.addEvent({
-        delay: 2000,
-        callback: () => {
-            console.log(scaleObj)
-        },
-    })
-};
+// function hint() {
+//     creatThis.time.addEvent({
+//         delay: 2000,
+//         callback: () => {
+//             console.log(scaleObj)
+//         },
+//     })
+// };
 
 function animationAlpha() {
     Lexi.setAlpha(alpha);
