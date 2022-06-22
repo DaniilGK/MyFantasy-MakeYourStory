@@ -4,6 +4,7 @@ let scaleObj;
 let currLexi = "0", nextLexi = "";
 let stuff0 = "Dress", stuff1 = "Blouse", stuff = [];
 let Lexi;
+let paulText;
 let creatThis;
 
 let allScene = new Phaser.Class({
@@ -68,6 +69,9 @@ function allGameObj(sceneThis) {
     sceneThis.load.image("Lblousebrownbagglasses", "assets/png/lexi/B-B-B-G.png");
     //paul
     sceneThis.load.image("paulEnd", "assets/png/paulEnd.png");
+    sceneThis.load.image("paulText", "assets/png/paulText-1.png");
+    //
+    sceneThis.load.image("playNow", "assets/png/playNow.png")
 };
 
 function interior(sceneThis, bg, scale) {
@@ -129,6 +133,7 @@ function startGame() {
 }
 
 function endGame() {
+    scaleObj = creatThis.add.image(40, 30, `${scale}`).setOrigin(0, 0);
     stuff.forEach(e => {
         e.setOrigin(0, 0).setInteractive();
         e.on("pointerdown", function() {
@@ -137,14 +142,19 @@ function endGame() {
             interior(creatThis, bg, scale);
             scaleObj.destroy();
             creatThis.add.image(100, 0, "paulEnd").setOrigin(0, 0);
-            Lexi = creatThis.add.image(10, 35, `${currLexi}`).setOrigin(0, 0);
-        });
-        e.on("pointerover", function() {    
-            e.setTint(0xC0C0C0);
-        });
-        
-        e.on("pointerout", function() {
-            e.setTint();
+            Lexi = creatThis.add.image(10, 55, `${currLexi}`).setOrigin(0, 0);
+            paulText = creatThis.add.image(70, 360, "paulText").setOrigin(0, 0);
+            creatThis.time.addEvent({
+                delay: 1500,
+                callback: () => {
+                    paulText.destroy();
+                    let playNow = creatThis.add.image(120, 800, "playNow").setOrigin(0, 0);
+                    playNow.setInteractive();
+                    playNow.on("pointerdown", function() {
+                        creatThis.scene.start("intro")
+                    });
+                },
+            })
         });
     })
 }
