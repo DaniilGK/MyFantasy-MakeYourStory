@@ -117,15 +117,6 @@ function endGame() {
     })
 };
 
-// function hint() {
-//     creatThis.time.addEvent({
-//         delay: 2000,
-//         callback: () => {
-//             console.log(scaleObj)
-//         },
-//     })
-// };
-
 function animationAlpha() {
     Lexi.setAlpha(alpha);
     stuff.forEach(e => e.setAlpha(alpha));
